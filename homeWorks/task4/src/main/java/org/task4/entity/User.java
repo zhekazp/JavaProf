@@ -14,23 +14,20 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @Column
     private String name;
-    @Column
     private String password;
-    @Column
     private String email;
-    @Column
     private String phone;
-    @Column
-    private Roots root;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "role_id")
+    private Role role;
 
-    public User(String name, String password, String email, String phone, Roots root) {
+    public User(String name, String password, String email, String phone, Role role) {
         this.name = name;
         this.password = password;
         this.email = email;
         this.phone = phone;
-        this.root = root;
+        this.role = role;
     }
 
 

@@ -1,14 +1,15 @@
 package org.task4.controller;
 
-import org.task4.DTO.UserDTO;
-import org.task4.DTO.UserWithIdDTO;
+import org.task4.DTO.user.UserDTO;
+import org.task4.DTO.user.UserRoleDTO;
+import org.task4.DTO.user.UserWithIdDTO;
 import org.task4.entity.User;
-import org.task4.service.AddUserService;
-import org.task4.service.FindUserService;
+import org.task4.service.user.AddUserService;
+import org.task4.service.user.FindUserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.task4.service.UpdateUserService;
+import org.task4.service.user.UpdateUserService;
 
 
 import java.util.List;
@@ -29,14 +30,13 @@ public class UserController {
         this.updateUserService = updateUserService;
     }
 
-    @GetMapping("/")
+    @GetMapping({"/", ""})
     public ResponseEntity<List<User>> findAll() {
         return new ResponseEntity<>(findUserService.findAllUsers(), HttpStatus.OK);
     }
 
     @PostMapping("/add")
     public ResponseEntity<User> addUser(@RequestBody UserDTO userDTO) {
-        System.out.println("addUser: " + userDTO.getName());
         return new ResponseEntity<>(addUserService.addUser(userDTO), HttpStatus.OK);
     }
 
@@ -50,15 +50,15 @@ public class UserController {
     }
 
     @PostMapping("/update")
-        public ResponseEntity<Boolean> updateUser(@RequestBody UserWithIdDTO user){
-        System.out.println("addUser: " + user.getName());
-            return updateUserService.EditUser(user)? new ResponseEntity<>(HttpStatus.OK) :
-                    new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+    public ResponseEntity<Boolean> updateUser(@RequestBody UserWithIdDTO user) {
+        return updateUserService.EditUser(user) ? new ResponseEntity<>(HttpStatus.OK) :
+                new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
 
-
-
-
-
+    @PostMapping("/role")
+    public ResponseEntity<Boolean> changeRoot(@RequestBody UserRoleDTO root){
+        return updateUserService.changeRoot(root) ? new ResponseEntity<>(HttpStatus.OK) :
+                new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    }
 
 }

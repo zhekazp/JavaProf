@@ -1,11 +1,12 @@
-package org.task4.DTO;
+package org.task4.DTO.user;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class UserDTO {
+public class UserWithIdDTO {
+    private int id;
     private String name;
     private String password;
     private String email;

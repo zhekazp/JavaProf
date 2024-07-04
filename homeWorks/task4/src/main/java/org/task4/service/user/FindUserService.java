@@ -1,4 +1,4 @@
-package org.task4.service;
+package org.task4.service.user;
 
 import org.task4.entity.User;
 import org.task4.repository.UserRepository;
