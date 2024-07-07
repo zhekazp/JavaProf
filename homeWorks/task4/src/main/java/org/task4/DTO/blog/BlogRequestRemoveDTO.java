@@ -1,4 +1,4 @@
-package org.task4.DTO.user;
+package org.task4.DTO.blog;
 
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
@@ -7,10 +7,12 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class UserRoleDTO {
-    @NotNull
-    private String role;
+public class BlogRequestRemoveDTO {
     @NotNull
     @Min(1)
-    private Integer userId;
+    private Integer id;
+
+    @NotNull
+    @Min(1)
+    private Integer UserId;
 }

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+		http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd">
+
+    <changeSet id="create.table.role" author="developer">
+        <createTable tableName="role">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints  primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+
+        </createTable>
+    </changeSet>
+
+    <changeSet id="create.table.user" author="developer">
+        <createTable tableName="user">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar (255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="email" type="varchar (255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="password" type="varchar (255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="phone" type="varchar (255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="role_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+    </changeSet>
+
+
+    <changeSet id="insert.default.roles" author="developer">
+        <insert tableName="role">
+            <column name="name" value="ADMIN"/>
+        </insert>
+        <insert tableName="role">
+            <column name="name" value="USER"/>
+        </insert>
+    </changeSet>
+
+
+    <changeSet id="insert.default.user" author="developer">
+        <insert tableName="user">
+            <column name="name" value="Administrator"/>
+            <column name="password" value="12345678"/>
+            <column name="email" value="admin@company.com"/>
+            <column name="phone" value="77777777777"/>
+            <column name="role_id" value="1"/>
+        </insert>
+    </changeSet>
+
+
+
+</databaseChangeLog>

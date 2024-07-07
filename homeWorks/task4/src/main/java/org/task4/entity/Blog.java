@@ -27,12 +27,12 @@ public class Blog {
     private int views;
     private int comments;
 
-    public Blog(String title, String content, User author, LocalDate publishedDate, LocalDateTime editedDate, int views, int comments) {
+    public Blog(String title, String content, User author,  int views, int comments) {
         this.title = title;
         this.content = content;
         this.author = author;
-        this.publishedDate = publishedDate;
-        this.editedDate = editedDate;
+        this.publishedDate = LocalDate.now();
+        this.editedDate = LocalDateTime.now();
         this.views = views;
         this.comments = comments;
     }

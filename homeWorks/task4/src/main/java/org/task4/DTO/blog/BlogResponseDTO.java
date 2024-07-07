@@ -9,8 +9,5 @@ public class BlogResponseDTO {
     private int id;
     private String title;
     private String content;
-    private Integer authorId;
-    private String authorName;
-    private int views;
-    private int comments;
+
 }

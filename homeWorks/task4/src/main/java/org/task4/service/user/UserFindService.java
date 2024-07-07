@@ -1,16 +1,17 @@
 package org.task4.service.user;
 
 import org.task4.entity.User;
+import org.task4.exeption.NotFoundException;
 import org.task4.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
+
 @Service
-public class FindUserService {
+public class UserFindService {
     UserRepository repository;
 
-    public FindUserService(UserRepository repository) {
+    public UserFindService(UserRepository repository) {
         this.repository = repository;
     }
 
@@ -18,7 +19,9 @@ public class FindUserService {
         return repository.findAll();
     }
 
-    public Optional<User> findUserById(int id) {
-        return repository.findById(id);
+    public User findUserById(int id) {
+        return repository.findById(id)
+                .orElseThrow(()
+                        -> new NotFoundException("User with id " + id + " not found"));
     }
 }
